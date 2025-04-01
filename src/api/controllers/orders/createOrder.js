@@ -1,6 +1,6 @@
-import User from '../models/user.js';
-import Basket from '../models/basket.js';
-import Order from '../models/order.js';
+import User from '../../models/user.js';
+import Basket from '../../models/basket.js';
+import Order from '../../models/order.js';
 
 //+ Эндпоинт для создания заказа:
 export const createOrder = async (req, res) => {

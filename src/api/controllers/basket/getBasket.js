@@ -1,5 +1,5 @@
-import Basket from '../models/basket.js';
-import Product from '../models/product.js';
+import Basket from '../../models/basket.js';
+import Product from '../../models/product.js';
 
 //+ Эндпоинт для получения корзины пользователя:
 export const getBasket = async (req, res) => {

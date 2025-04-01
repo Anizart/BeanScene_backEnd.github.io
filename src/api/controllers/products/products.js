@@ -1,4 +1,4 @@
-import Product from '../models/product';
+import Product from '../../models/product.js';
 
 //+ Эндпоинт для получения всех продуктов:
 export const products = async (req, res) => {

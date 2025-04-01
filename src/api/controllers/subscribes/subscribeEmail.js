@@ -1,7 +1,7 @@
-import Subscribe from '../models/subscribe.js';
+import Subscribe from '../../models/subscribe.js';
 
 //+ Эндпоинт для добавления email в таблицу Subscribe
-export const subscribe = async (req, res) => {
+export const subscribeEmail = async (req, res) => {
     try {
         const { email } = req.body;
 

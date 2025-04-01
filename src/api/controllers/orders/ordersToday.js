@@ -1,4 +1,4 @@
-import Order from '../models/order.js';
+import Order from '../../models/order.js';
 
 //+ Эндпоинт для подсчёта кол-ва заказов, сделанных за сегодня:
 export const ordersToday = async (req, res) => {

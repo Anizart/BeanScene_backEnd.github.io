@@ -1,4 +1,4 @@
-import Basket from '../models/basket.js';
+import Basket from '../../models/basket.js';
 
 //+ Эндпоинт для добавления товара в корзину:
 export const addToBasket = async (req, res) => {

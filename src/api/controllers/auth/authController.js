@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs'; // для хэширования
-import User from '../models/user.js';
+import User from '../../models/user.js';
  
 //+ Registration:
 export const register = async (req, res) => {
@@ -47,7 +47,7 @@ export const register = async (req, res) => {
 };
 
 //+ Authorization:
-export const authorization = async (req, res) => {
+export const login = async (req, res) => {
     try {
         const { email, password } = req.body;
 

@@ -1,4 +1,4 @@
-import Basket from '../models/basket.js';
+import Basket from '../../models/basket.js';
 
 //+ Эндпоинт для удаления товара из корзины:
 export const removeFromBasket = async (req, res) => {
