@@ -15,7 +15,12 @@ const port = 3000;
 
 //+ Middleware:
 //+ Middleware для разрешения запросов с клиента:
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Указываю фронт явно
+    credentials: true, // Разрешаю отправку куков
+  })
+);
 app.use(express.static("public"));
 
 //+ Подключаю middleware для обработки JSON и cookie:
