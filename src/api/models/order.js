@@ -38,6 +38,9 @@ const Order = sequelize.define('order', {
         allowNull: false,
         defaultValue: "Без добавок"
     }
+},
+{
+    timestamps: false,
 });
 
 // ?????:

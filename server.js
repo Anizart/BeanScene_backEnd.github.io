@@ -10,6 +10,8 @@ import productsRoutes from "./src/api/routes/products.js";
 import subscriptionsRoutes from "./src/api/routes/subscriptions.js";
 import userRoutes from "./src/api/routes/user.js";
 
+// import Product from "./src/api/models/product.js";
+
 const app = express();
 const port = 3000;
 
@@ -34,6 +36,33 @@ app.use("/api/orders", ordersRoutes);
 app.use("/api/products", productsRoutes);
 app.use("/api/subscribe", subscriptionsRoutes);
 app.use("/api/user", userRoutes);
+
+//+ Необходимые загрузки для корректной работы приожения:
+//+ Продукты:
+// await Product.create({
+//     img: "uploads/section_3_card_1.webp",
+//     name: "Капучино",
+//     description: "Кофе 50% | Молоко 50%",
+//     price: "80"
+// });
+// await Product.create({
+//     img: "uploads/section_3_card_2.webp",
+//     name: "Чай Латте",
+//     description: "Кофе 50% | Молоко 50%",
+//     price: "79"
+// });
+// await Product.create({
+//     img: "uploads/section_3_card_3.webp",
+//     name: "Макиато",
+//     description: "Кофе 50% | Молоко 50%",
+//     price: "89"
+// });
+// await Product.create({
+//     img: "uploads/section_3_card_4.webp",
+//     name: "Эспрессо",
+//     description: "Кофе 50% | Молоко 50%",
+//     price: "75"
+// });
 
 sequelize
   .sync()

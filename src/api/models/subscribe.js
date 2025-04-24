@@ -11,6 +11,9 @@ const Subscribe = sequelize.define('subscribe', {
         type: DataTypes.STRING,
         allowNull: false
     },
+},
+{
+    timestamps: false,
 });
 
 export default Subscribe;

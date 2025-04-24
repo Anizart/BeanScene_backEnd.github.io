@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "./index.js";
 
-const User = sequelize.define("registration", {
+const User = sequelize.define("user", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -23,6 +23,15 @@ const User = sequelize.define("registration", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+    bonuses: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  },
+    
+},
+{
+    timestamps: false,
 });
 
 export default User;

@@ -25,6 +25,9 @@ const Basket = sequelize.define('basket', {
         },
         allowNull: false,
     },
+},
+{
+    timestamps: false,
 });
 
 User.hasMany(Basket);
