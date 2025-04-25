@@ -23,7 +23,7 @@ const User = sequelize.define("user", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-    bonuses: {
+  bonuses: {
     type: DataTypes.INTEGER,
     allowNull: false,
     defaultValue: 0,

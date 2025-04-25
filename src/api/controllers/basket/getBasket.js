@@ -13,7 +13,8 @@ export const getBasket = async (req, res) => {
         // Получаю записи корзины пользователя вместе с информацией о продуктах:
         const basketItems = await Basket.findAll({
             where: { id_user: userId },
-            include: [Product] // Подключаю связанные записи продуктов
+            include: [Product], // Подключаю связанные записи продуктов
+            attributes: ["id", "additives"]
         });
 
         res.status(200).json(basketItems);

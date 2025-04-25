@@ -25,6 +25,11 @@ const Basket = sequelize.define('basket', {
         },
         allowNull: false,
     },
+    additives: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "Без добавок"
+    }
 },
 {
     timestamps: false,
@@ -33,6 +38,6 @@ const Basket = sequelize.define('basket', {
 User.hasMany(Basket);
 Basket.belongsTo(User);
 Product.hasMany(Basket);
-Basket.belongsTo(Product);
+Basket.belongsTo(Product, { foreignKey: 'id_product' });
 
 export default Basket;

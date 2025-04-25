@@ -7,13 +7,13 @@ export const register = async (req, res) => {
         const { name, email, address, password } = req.body;
 
         if (!name || !email || !address || !password) {
-            return res.status(400).json({ message: "All fields are required" });
+            return res.status(400).json({ message: "Все поля обязательны для заполнения" });
         }
 
         //+ Проверка на существование пользователя:
         const existingUser = await User.findOne({ where: { email } });
         if (existingUser) {
-            return res.status(400).json({ message: "User with this email already exists" });
+            return res.status(400).json({ message: "Пользователь с таким адресом электронной почты уже существует" });
         }
 
         //+ Хеширование пароля
@@ -39,7 +39,7 @@ export const register = async (req, res) => {
         });
 
         //+ Ответ клиенту:
-        res.status(201).json({ message: "The user has been successfully registered", user: newUser });
+        res.status(201).json({ message: "Пользователь успешно зарегистрирован", user: newUser });
     } catch (error) {
         console.error("Error during user creation:", error);
         res.status(500).json({ message: "Internal server error" });
@@ -52,19 +52,19 @@ export const login = async (req, res) => {
         const { email, password } = req.body;
 
         if (!email || !password) {
-            return res.status(400).json({ message: "Email and password are required" });
+            return res.status(400).json({ message: "Требуется указать адрес электронной почты и пароль" });
         }
 
         const user = await User.findOne({ where: { email } });
 
         if (!user) {
-            return res.status(400).json({ message: "The user was not found ㄟ( ▔, ▔ )ㄏ" });
+            return res.status(400).json({ message: "Пользователь не был найден ㄟ( ▔, ▔ )ㄏ" });
         }
 
         //+ Проверка пароля:
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
         if (!isPasswordCorrect) {
-            return res.status(400).json({ message: "Invalid password" });
+            return res.status(400).json({ message: "Неверный пароль" });
         }
 
         //+ Устанавливаем cookie с userId на 18 дней;
@@ -73,9 +73,9 @@ export const login = async (req, res) => {
             maxAge: 18 * 24 * 60 * 60 * 1000 // 18 дней в миллисекундах
         });
 
-        res.status(200).json({ message: "Authorization is successful（￣︶￣）↗" });
+        res.status(200).json({ message: "Авторизация прошла успешно（￣︶￣）↗" });
     } catch (error) {
         console.error("Ошибка при авторизации:", error);
-        res.status(500).json({ message: "Internal server error (＃°Д°)" });
+        res.status(500).json({ message: "Внутренняя ошибка сервера (＃°Д°)" });
     }
 };

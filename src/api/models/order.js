@@ -33,17 +33,11 @@ const Order = sequelize.define('order', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    flavor_additive: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: "Без добавок"
-    }
 },
 {
     timestamps: false,
 });
 
-// ?????:
 User.hasMany(Order); // Один пользователь может делать несколько заказов
 Order.belongsTo(User);
 Product.hasMany(Order);

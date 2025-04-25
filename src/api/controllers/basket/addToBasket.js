@@ -4,7 +4,7 @@ import Basket from '../../models/basket.js';
 export const addToBasket = async (req, res) => {
     try {
         const userId = req.cookies.userId;
-        const { productId } = req.body;
+        const { productId, additives  } = req.body;
 
         if (!userId) {
             return res.status(401).json({ message: 'Please log in to place an order' });
@@ -16,7 +16,7 @@ export const addToBasket = async (req, res) => {
         }
 
         // Добавляю запись в таблицу корзины:
-        await Basket.create({ id_user: userId, id_product: productId });
+        await Basket.create({ id_user: userId, id_product: productId, additives: additives });
 
         res.status(201).json({ message: 'Product added to basket successfully' });
     } catch (error) {

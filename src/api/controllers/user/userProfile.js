@@ -7,7 +7,7 @@ export const userProfile = async (req, res) => {
 
     //+ Проверка наличия userId:
     if (!userId) {
-      return res.status(401).json({ message: "Not authorized" });
+      return res.status(401).json({ message: "Не авторизован" });
     }
 
     //+ Получение пользователя из БД:
@@ -15,7 +15,7 @@ export const userProfile = async (req, res) => {
 
     //+ Проверка существования пользователя:
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ message: "Пользователь не найден" });
     }
 
     //+ Возврат данных пользователя:
@@ -23,9 +23,10 @@ export const userProfile = async (req, res) => {
       name: user.name,
       email: user.email,
       address: user.address,
+      bonuses: user.bonuses,
     });
   } catch (error) {
-    console.error("Error fetching user data:", error);
-    res.status(500).json({ message: "Internal server error" });
+    console.error("Ошибка при получении пользовательских данных:", error);
+    res.status(500).json({ message: "Внутренняя ошибка сервера" });
   }
 };

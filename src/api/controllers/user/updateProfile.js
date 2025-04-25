@@ -8,20 +8,20 @@ export const updateProfile = async (req, res) => {
 
     // Проверка наличия userId:
     if (!userId) {
-      return res.status(401).json({ message: "Not authorized" });
+      return res.status(401).json({ message: "Не авторизован" });
     }
 
     const { name, address, password } = req.body;
 
     // Проверка обязательных полей:
     if (!name || !address || !password) {
-      return res.status(400).json({ message: "All fields are required" });
+      return res.status(400).json({ message: "Все поля обязательны для заполнения" });
     }
 
     // Поиск пользователя:
     const user = await User.findByPk(userId);
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ message: "Пользователь не найден" });
     }
 
     // Хэширование нового пароля:
@@ -34,9 +34,9 @@ export const updateProfile = async (req, res) => {
     user.password = hashedPassword;
     await user.save();
 
-    res.status(200).json({ message: "Profile updated successfully" });
+    res.status(200).json({ message: "Профиль успешно обновлен" });
   } catch (error) {
-    console.error("Error updating profile:", error);
-    res.status(500).json({ message: "Internal server error" });
+    console.error("Ошибка при обновлении профиля:", error);
+    res.status(500).json({ message: "Внутренняя ошибка сервера" });
   }
 };
