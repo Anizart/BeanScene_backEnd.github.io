@@ -7,7 +7,7 @@ export const addToBasket = async (req, res) => {
         const { productId, additives  } = req.body;
 
         if (!userId) {
-            return res.status(401).json({ message: 'Please log in to place an order' });
+            return res.status(401).json({ message: 'Войдите, чтобы оформить заказ' });
         }
 
         if (!productId) {
@@ -18,9 +18,9 @@ export const addToBasket = async (req, res) => {
         // Добавляю запись в таблицу корзины:
         await Basket.create({ id_user: userId, id_product: productId, additives: additives });
 
-        res.status(201).json({ message: 'Product added to basket successfully' });
+        res.status(201).json({ message: 'Корзина пополнена ツ' });
     } catch (error) {
-        console.error('Error adding product to basket:', error);
-        res.status(500).json({ message: 'Internal server error' });
+        console.error('Ошибка при добавлении товара в корзину ( сервер ):', error);
+        res.status(500).json({ message: 'Внутренняя ошибка сервера' });
     }
 };

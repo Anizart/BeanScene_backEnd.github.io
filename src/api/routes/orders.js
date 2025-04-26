@@ -5,7 +5,6 @@ import {ordersToday} from "../controllers/orders/ordersToday.js";
 const router = Router();
 
 router.post('/', createOrder);
-
 router.get('/today', ordersToday);
 
 export default router;

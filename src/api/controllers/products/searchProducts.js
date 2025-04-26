@@ -8,7 +8,7 @@ export const searchProducts = async (req, res) => {
     const query = req.query.query; // Получаю строку поиска из параметра query
 
     if (!query) {
-      return res.status(400).json({ message: "Search query is required" });
+      return res.status(400).json({ message: "Требуется поисковый запрос" });
     }
 
     // Поиск продуктов по имени, используя оператор like для частичного совпадения

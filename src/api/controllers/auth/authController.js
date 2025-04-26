@@ -73,7 +73,7 @@ export const login = async (req, res) => {
             maxAge: 18 * 24 * 60 * 60 * 1000 // 18 дней в миллисекундах
         });
 
-        res.status(200).json({ message: "Авторизация прошла успешно（￣︶￣）↗" });
+        res.status(200).json({ message: "С возращением（￣︶￣）↗" });
     } catch (error) {
         console.error("Ошибка при авторизации:", error);
         res.status(500).json({ message: "Внутренняя ошибка сервера (＃°Д°)" });

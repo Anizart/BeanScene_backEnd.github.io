@@ -9,17 +9,17 @@ export const createOrder = async (req, res) => {
         const { productId, flavor_additive } = req.body;
 
         if (!userId) {
-            return res.status(401).json({ message: 'User not authenticated' });
+            return res.status(401).json({ message: 'Пользователь не прошел проверку' });
         }
 
         if (!productId) {
-            return res.status(400).json({ message: 'Product ID is required' });
+            return res.status(400).json({ message: 'Требуется id продукта' });
         }
 
         // Получаем адрес пользователя:
         const user = await User.findByPk(userId);
         if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).json({ message: 'Пользователь не найден' });
         }
 
         // Проверяем, есть ли этот товар в корзине
@@ -28,7 +28,7 @@ export const createOrder = async (req, res) => {
         });
 
         if (!productInBasket) {
-            return res.status(404).json({ message: 'Product not found in basket' });
+            return res.status(404).json({ message: 'Товар не найден в корзине' });
         }
 
         // Создаём заказ с добавками
@@ -43,10 +43,10 @@ export const createOrder = async (req, res) => {
         // Удаляем товар из корзины
         await productInBasket.destroy();
 
-        res.status(201).json({ message: 'Order created successfully' });
+        res.status(201).json({ message: 'Заказ успешно создан' });
 
     } catch (error) {
-        console.error('Error creating order:', error);
-        res.status(500).json({ message: 'Internal server error' });
+        console.error('Ошибка при создании заказа:', error);
+        res.status(500).json({ message: 'Внутренняя ошибка сервера' });
     }
 };

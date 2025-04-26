@@ -20,7 +20,7 @@ export const ordersToday = async (req, res) => {
 
         res.status(200).json({ count: orderCount });
     } catch (error) {
-        console.error("Error fetching order count:", error);
+        console.error("Ошибка при подсчете количества заказов на выборку:", error);
         res.status(500);
     }
 };

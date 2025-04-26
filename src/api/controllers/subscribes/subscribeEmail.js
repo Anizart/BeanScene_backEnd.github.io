@@ -7,13 +7,13 @@ export const subscribeEmail = async (req, res) => {
 
         // Проверяю, что email был передан:
         if (!email) {
-            return res.status(400).json({ message: 'Email is required' });
+            return res.status(400).json({ message: 'Требуется электронная почта' });
         }
 
         // Проверяю, существует ли уже такой email в базе:
         const existingEmail = await Subscribe.findOne({ where: { email } });
         if (existingEmail) {
-            return res.status(400).json({ message: 'This email is already subscribed' });
+            return res.status(400).json({ message: 'Эта почта занята' });
         }
 
         // Добавляю email:
