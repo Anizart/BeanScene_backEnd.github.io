@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import sequelize from "./src/api/models/index.js";
 
 import authRoutes from "./src/api/routes/auth.js";
+import reviewsRoutes from "./src/api/routes/reviews.js"
 import basketRoutes from "./src/api/routes/basket.js";
 import ordersRoutes from "./src/api/routes/orders.js";
 import productsRoutes from "./src/api/routes/products.js";
@@ -11,6 +12,7 @@ import subscriptionsRoutes from "./src/api/routes/subscriptions.js";
 import userRoutes from "./src/api/routes/user.js";
 
 // import Product from "./src/api/models/product.js";
+// import Reviews from "./src/api/models/reviews.js";
 
 const app = express();
 const port = 3000;
@@ -31,6 +33,7 @@ app.use(cookieParser());
 
 //+ Routes:
 app.use("/api/auth", authRoutes);
+app.use("/api/reviews", reviewsRoutes)
 app.use("/api/basket", basketRoutes);
 app.use("/api/orders", ordersRoutes);
 app.use("/api/products", productsRoutes);
@@ -62,6 +65,22 @@ app.use("/api/user", userRoutes);
 //     name: "Эспрессо",
 //     description: "Кофе 50% | Молоко 50%",
 //     price: "75"
+// });
+// //+ Создания отзывов:
+// await Reviews.create({
+//     img: "assets/commentator.png",
+//     name: "Александр Иванов",
+//     feedback: "Отличный кофе и быстрая доставка! Всем советую."
+// });
+// await Reviews.create({
+//     img: "assets/commentator.png",
+//     name: "Мария Смирнова",
+//     feedback: "Очень уютное место и вкусные десерты!"
+// });
+// await Reviews.create({
+//     img: "assets/commentator.png",
+//     name: "Дмитрий Петров",
+//     feedback: "Обслуживание на высшем уровне, буду заказывать ещё."
 // });
 
 sequelize
