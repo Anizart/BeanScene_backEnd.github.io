@@ -1,3 +1,4 @@
+import { Sequelize } from 'sequelize';
 import Order from '../../models/order.js';
 
 //+ Эндпоинт для подсчёта кол-ва заказов, сделанных за сегодня:
