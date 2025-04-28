@@ -20,9 +20,9 @@ export const subscribeEmail = async (req, res) => {
         const newSubscription = await Subscribe.create({ email });
         console.log('New subscriber:', newSubscription.toJSON());
 
-        res.status(201).json({ message: 'Successfully subscribed', subscriber: newSubscription });
+        res.status(201).json({ message: 'Вы подписаны', subscriber: newSubscription });
     } catch (error) {
-        console.error('Error during subscription:', error);
-        res.status(500).json({ message: 'Internal server error' });
+        console.error('Ошибка во время подписки:', error);
+        res.status(500).json({ message: 'Внутренняя ошибка сервера' });
     }
 };
