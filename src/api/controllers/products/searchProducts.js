@@ -5,7 +5,7 @@ import { RESPONSE_ERRORS } from "../../../shared/errors.js";
 //+ Эндпоинт для поиска продуктов:
 export const searchProducts = async (req, res) => {
   try {
-    const query = req.query.query; // Получаю строку поиска из параметра query
+    const query = req.query.query?.trim(); // Получаю строку поиска из параметра query и убераю лишние пробелы
 
     if (!query) {
       return res.status(400).json({ message: "Требуется поисковый запрос" });
@@ -13,11 +13,12 @@ export const searchProducts = async (req, res) => {
 
     // Поиск продуктов по имени, используя оператор like для частичного совпадения
     const products = await Product.findAll({
-      where: {
-        name: {
-          [Sequelize.Op.like]: `%${query}%`, // Поиск по имени с подстрочными совпадениями
-        },
-      },
+      where: Sequelize.where(
+        Sequelize.literal(`lower(name) COLLATE NOCASE`),
+        {
+          [Sequelize.Op.like]: `%${query.toLowerCase()}%` // Поиск по имени с подстрочными совпадениями и нечувствительности к регистру
+        }
+      )
     });
 
     if (products.length > 0) {
