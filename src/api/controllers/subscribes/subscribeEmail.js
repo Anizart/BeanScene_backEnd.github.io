@@ -4,7 +4,7 @@ import dotenv from "dotenv"
 
 dotenv.config() // Загрузка переменных окружения
 
-//+ Эндпоинт для добавления email в таблицу Subscribe
+//+ Эндпоинт для добавления email в таблицу Subscribe и отправка письма
 export const subscribeEmail = async (req, res) => {
   try {
     const { email } = req.body
