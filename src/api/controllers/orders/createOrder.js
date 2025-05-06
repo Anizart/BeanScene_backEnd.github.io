@@ -29,27 +29,25 @@ export const createOrder = async (req, res) => {
 
     // Обрабатываем каждый товар из корзины
     for (const item of products) {
-      if (!item.id_product || !item.additives) {
+      if (!item.id_basket || !item.additives) {
         console.log("Некорректные данные товара:", item)
         continue // Если данные товара неполные, пропускаем
       }
 
       // Находим товар в корзине пользователя
       const basketItem = await Basket.findOne({
-        where: { id_user: userId, id_product: item.id_product },
+        where: { id_user: userId, id: item.id_basket },
       })
 
       if (!basketItem) {
-        console.log(
-          `Товар с id_product ${item.id_product} не найден в корзине.`
-        )
+        console.log(`Товар с id_product ${item.id_basket} не найден в корзине.`)
         continue // Если товара нет в корзине, пропускаем
       }
 
-      // Создаём заказ
+      // Создаю заказ
       const order = await Order.create({
         id_user: userId,
-        id_product: item.id_product,
+        id_product: basketItem.id_product,
         time,
         date: new Date(),
         address: user.address,
