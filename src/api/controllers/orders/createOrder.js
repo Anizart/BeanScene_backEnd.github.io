@@ -61,12 +61,6 @@ export const createOrder = async (req, res) => {
       const productTotal = parseFloat(product.price) + additivesPrice
       totalPrice += productTotal
 
-      //+ Начисляю бонусы:
-      const BONUS_PERCENT = 5
-      const bonusPointsToAdd = Math.floor(totalPrice * (BONUS_PERCENT / 100))
-      user.bonuses += bonusPointsToAdd
-      await user.save()
-
       //+ Добавляю в список для чека
       checkItems.push({
         name: product.name,
@@ -141,8 +135,14 @@ export const createOrder = async (req, res) => {
       html,
     })
 
+    //+ Начисляю бонусы:
+    const BONUS_PERCENT = 5
+    const bonusPointsToAdd = Math.floor(totalPrice * (BONUS_PERCENT / 100))
+    user.bonuses += bonusPointsToAdd
+    await user.save()
+
     res.status(201).json({
-      message: `Заказ успешно создан. Вам начисленны бонусы: ${user.bonuses}`,
+      message: `Заказ успешно создан. Вам начисленны бонусы: ${bonusPointsToAdd}`,
     })
   } catch (error) {
     console.error("Ошибка при создании заказа:", error)
