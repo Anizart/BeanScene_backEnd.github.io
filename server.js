@@ -21,7 +21,7 @@ const port = 3000
 //+ Middleware для разрешения запросов с клиента:
 app.use(
   cors({
-    origin: "http://localhost:5173", // Указываю фронт явно
+    origin: "https://bean-scene.tw1.su", // Указываю фронт явно
     credentials: true, // Разрешаю отправку куков
   })
 )
